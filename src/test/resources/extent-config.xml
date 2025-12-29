@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+    <configuration>
+        <!-- Report theme: STANDARD, DARK -->
+        <theme>STANDARD</theme>
+        
+        <!-- Document encoding -->
+        <encoding>UTF-8</encoding>
+        
+        <!-- Protocol for script and stylesheets: HTTP, HTTPS -->
+        <protocol>HTTPS</protocol>
+        
+        <!-- Title of the document -->
+        <documentTitle>MTOmics Automation Test Report</documentTitle>
+        
+        <!-- Report name displayed on top -->
+        <reportName>MTOmics Test Execution Report</reportName>
+        
+        <!-- Timestamp format -->
+        <timeStampFormat>MMM dd, yyyy HH:mm:ss</timeStampFormat>
+        
+        <!-- Custom CSS -->
+        <css>
+            <![CDATA[
+                .logo {
+                    height: 40px;
+                }
+            ]]>
+        </css>
+        
+        <!-- Custom JavaScript -->
+        <scripts>
+            <![CDATA[
+                $(document).ready(function() {
+                    console.log('MTOmics Test Report Loaded');
+                });
+            ]]>
+        </scripts>
+    </configuration>
+</extentreports>

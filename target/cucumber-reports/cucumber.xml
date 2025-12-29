@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="134.552" tests="5" skipped="0" failures="2" errors="0">
+<testcase classname="Admin Invite Provider" name="Successfully invite a provider with valid details" time="39.593">
+<failure type="java.lang.AssertionError" message="Invitation sent success message should be displayed">
+<![CDATA[java.lang.AssertionError: Invitation sent success message should be displayed
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.mtomics.stepDefinitions.admin.InviteProviderSteps.i_should_see_invitation_sent_success_message(InviteProviderSteps.java:100)
+	at ✽.I should see invitation sent success message(file:///D:/AI/MTOmics_core_web-main/Mtomics_Automation/src/test/resources/features/admin/admin_invite_provider.feature:24)
+]]>
+</failure>
+<system-out><![CDATA[
+Given I navigate to the MTOmics login page..................................passed
+When I enter email "ajith.r+admin@spritle.com"..............................passed
+And I enter password "Qwerty@123"...........................................passed
+And I click the sign in button..............................................passed
+Then I should be redirected to the users page...............................passed
+And I should see the user management page...................................passed
+And I click the new invite button...........................................passed
+When I enter provider email "gopinath.e+provider11@spritle.com".............passed
+And I enter provider first name "John"......................................passed
+And I enter provider last name "Doe"........................................passed
+And I select role "Provider"................................................passed
+And I should see the email preview with provider details....................passed
+And I click send invitation button..........................................passed
+Then I should see invitation sent success message...........................failed
+And the invitation should appear in pending invitations.....................skipped
+]]></system-out>
+</testcase>
+<testcase classname="Admin Invite Provider" name="Invite provider with duplicate email" time="15.709">
+<system-out><![CDATA[
+Given I navigate to the MTOmics login page..................................passed
+When I enter email "ajith.r+admin@spritle.com"..............................passed
+And I enter password "Qwerty@123"...........................................passed
+And I click the sign in button..............................................passed
+Then I should be redirected to the users page...............................passed
+And I should see the user management page...................................passed
+And I click the new invite button...........................................passed
+Given I enter provider email "gopinath.e+qp20@spritle.com"..................passed
+When I enter provider first name "Jane".....................................passed
+Then I should see error message "User already exist"........................passed
+]]></system-out>
+</testcase>
+<testcase classname="Admin Invite Provider" name="Invite provider with invalid email format" time="21.295">
+<failure type="java.lang.AssertionError" message="Error message should be displayed: Invalid email format">
+<![CDATA[java.lang.AssertionError: Error message should be displayed: Invalid email format
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at com.mtomics.stepDefinitions.admin.InviteProviderSteps.i_should_see_error_message(InviteProviderSteps.java:136)
+	at ✽.I should see error message "Invalid email format"(file:///D:/AI/MTOmics_core_web-main/Mtomics_Automation/src/test/resources/features/admin/admin_invite_provider.feature:41)
+]]>
+</failure>
+<system-out><![CDATA[
+Given I navigate to the MTOmics login page..................................passed
+When I enter email "ajith.r+admin@spritle.com"..............................passed
+And I enter password "Qwerty@123"...........................................passed
+And I click the sign in button..............................................passed
+Then I should be redirected to the users page...............................passed
+And I should see the user management page...................................passed
+And I click the new invite button...........................................passed
+When I enter provider email "gopinath.e+provider2"..........................passed
+And I enter provider first name "Test"......................................passed
+And I enter provider last name "User".......................................passed
+And I select role "Provider"................................................passed
+And I should see the email preview with provider details....................passed
+And I click send invitation button..........................................passed
+Then I should see error message "Invalid email format"......................failed
+]]></system-out>
+</testcase>
+<testcase classname="Admin Invite Provider" name="Invite provider with missing required fields" time="44.59">
+<system-out><![CDATA[
+Given I navigate to the MTOmics login page..................................passed
+When I enter email "ajith.r+admin@spritle.com"..............................passed
+And I enter password "Qwerty@123"...........................................passed
+And I click the sign in button..............................................passed
+Then I should be redirected to the users page...............................passed
+And I should see the user management page...................................passed
+And I click the new invite button...........................................passed
+Given I enter provider email "gopinath.e+provider33@spritle.com"............passed
+When I click send invitation button.........................................passed
+Then I should see validation errors for required fields.....................passed
+]]></system-out>
+</testcase>
+<testcase classname="Admin Invite Provider" name="Edit invitation email template" time="13.177">
+<system-out><![CDATA[
+Given I navigate to the MTOmics login page..................................passed
+When I enter email "ajith.r+admin@spritle.com"..............................passed
+And I enter password "Qwerty@123"...........................................passed
+And I click the sign in button..............................................passed
+Then I should be redirected to the users page...............................passed
+And I should see the user management page...................................passed
+And I click the new invite button...........................................passed
+When I enter provider email "gopinath.e+provider77@spritle.com".............passed
+And I enter provider first name "Custom"....................................passed
+And I enter provider last name "Email"......................................passed
+And I select role "Provider"................................................passed
+And I click edit email template button......................................passed
+Then I should see the email editor..........................................passed
+]]></system-out>
+</testcase>
+</testsuite>
