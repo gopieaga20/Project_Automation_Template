@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" style=""><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium Cucumber Java Automation Framework - Complete Tutorial</title>
+    <!-- Pico CSS for clean base styling -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&amp;family=Source+Code+Pro:wght@400;600&amp;display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --bg-light: #f8f9fa;
+            --border-color: #e9ecef;
+            --sidebar-width: 280px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+        }
+
+        /* Layout */
+        .page-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: var(--sidebar-width);
+            background-color: #fff;
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+            padding: 2rem 1rem;
+        }
+
+        .sidebar h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-links a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #555;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: #e3f2fd;
+            color: var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .nav-links i {
+            margin-right: 8px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem 4rem;
+            max-width: 1200px;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 3rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--secondary-color);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-top: 2rem;
+        }
+
+        p, li {
+            font-size: 1rem;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-family: 'Source Code Pro', monospace;
+            position: relative;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        code {
+            font-family: 'Source Code Pro', monospace;
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #c7254e;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: inherit;
+            padding: 0;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .copy-btn:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 8px;
+            border-left: 5px solid;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .alert-info {
+            background-color: #e3f2fd;
+            border-color: #2196f3;
+            color: #0d47a1;
+        }
+
+        .alert-success {
+            background-color: #e8f5e9;
+            border-color: #4caf50;
+            color: #1b5e20;
+        }
+
+        .alert-warning {
+            background-color: #fff3e0;
+            border-color: #ff9800;
+            color: #e65100;
+        }
+
+        .alert-danger {
+            background-color: #ffebee;
+            border-color: #f44336;
+            color: #b71c1c;
+        }
+
+        .alert i {
+            margin-right: 1rem;
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        /* Tree View */
+        .tree-view {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            font-family: 'Source Code Pro', monospace;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* Accordion / Details */
+        details {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            background: white;
+        }
+        
+        details summary {
+            padding: 1rem;
+            cursor: pointer;
+            font-weight: 600;
+            background-color: #f8f9fa;
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+            list-style: none;
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid var(--border-color);
+            color: var(--secondary-color);
+        }
+
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details summary::after {
+            content: '+'; 
+            float: right; 
+            font-weight: bold;
+        }
+        
+        details[open] summary::after {
+            content: '-';
+        }
+
+        details p, details div {
+            padding: 1rem;
+            margin: 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .checklist li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist li i {
+            margin-right: 10px;
+        }
+
+        /* Back to top */
+        #back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+            z-index: 99;
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        #back-to-top:hover {
+            transform: translateY(-5px);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s;
+            }
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .menu-toggle {
+                display: block;
+                position: fixed;
+                top: 15px;
+                left: 15px;
+                z-index: 101;
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 10px;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+        @media (min-width: 993px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body style="">
+
+    <button class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active')">
+        <i class="fas fa-bars"></i> Menu
+    </button>
+
+    <div class="page-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <h3><i class="fas fa-robot"></i> Selenium Guide</h3>
+            <ul class="nav-links">
+                <li><a href="#introduction"><i class="fas fa-home"></i> Introduction</a></li>
+                <li><a href="#architecture"><i class="fas fa-sitemap"></i> Architecture</a></li>
+                <li><a href="#prerequisites"><i class="fas fa-list-check"></i> Prerequisites</a></li>
+                <li><a href="#setup"><i class="fas fa-cog"></i> Project Setup</a></li>
+                <li><a href="#components"><i class="fas fa-cubes"></i> Components</a></li>
+                <li><a href="#first-test"><i class="fas fa-vial"></i> First Test</a></li>
+                <li><a href="#best-practices"><i class="fas fa-star"></i> Best Practices</a></li>
+                <li><a href="#running-tests"><i class="fas fa-play"></i> Running Tests</a></li>
+                <li><a href="#common-errors"><i class="fas fa-bug"></i> Common Errors</a></li>
+                <li><a href="#troubleshooting"><i class="fas fa-wrench"></i> Troubleshooting</a></li>
+                <li><a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                <li><a href="#cheat-sheet"><i class="fas fa-file-alt"></i> Cheat Sheet</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            
+            <section id="header-section">
+                <h1>Selenium Cucumber Java Automation Framework</h1>
+                <p class="lead">A complete, professional guide to building robust test automation frameworks.</p>
+                
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <div>
+                        <strong>What You'll Learn:</strong>
+                        <ul style="margin: 0.5rem 0 0 1.2rem;">
+                            <li>✅ How automation frameworks are structured</li>
+                            <li>✅ How to create test scenarios from scratch (BDD)</li>
+                            <li>✅ How to write Page Objects (representing web pages)</li>
+                            <li>✅ How to implement Step Definitions (test logic)</li>
+                            <li>✅ How to run and debug tests</li>
+                            <li>✅ How to fix common errors</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="introduction">
+                <h2>1. Introduction</h2>
+                <p>Welcome to this comprehensive tutorial on Selenium-based automation framework! This guide will teach you everything you need to know about test automation using:</p>
+                <div class="grid">
+                    <div>
+                        <ul>
+                            <li><strong>Selenium WebDriver</strong> - For browser automation</li>
+                            <li><strong>Cucumber</strong> - For writing tests in plain English (BDD)</li>
+                            <li><strong>JUnit</strong> - For running tests</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Page Object Model (POM)</strong> - For organizing code</li>
+                            <li><strong>Maven</strong> - For managing dependencies</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="architecture">
+                <h2>2. Framework Architecture</h2>
+                <p>Our framework uses a <strong>layered architecture</strong> where each layer has a specific responsibility:</p>
+
+                <div class="tree-view">
+automation-project/
+├── src/test/
+│   ├── java/com/company/
+│   │   ├── context/          <span style="color:#999"># Sharing data between tests</span>
+│   │   ├── hooks/            <span style="color:#999"># Setup and cleanup actions</span>
+│   │   ├── pages/            <span style="color:#999"># Page Object classes (one per page)</span>
+│   │   ├── runners/          <span style="color:#999"># Test execution configuration</span>
+│   │   ├── stepDefinitions/  <span style="color:#999"># Test step implementations</span>
+│   │   └── utils/            <span style="color:#999"># Helper classes (waits, config, etc.)</span>
+│   └── resources/
+│       ├── config/           <span style="color:#999"># Configuration files</span>
+│       └── features/         <span style="color:#999"># Test scenarios in plain English</span>
+├── pom.xml                   <span style="color:#999"># Dependencies and build settings</span>
+└── logs/                     <span style="color:#999"># Test execution logs</span>
+                </div>
+
+                <h3>Design Patterns Used</h3>
+                <div class="grid">
+                    <article style="padding:15px; background:white; border-left:4px solid var(--secondary-color);">
+                        <strong>Page Object Model (POM)</strong><br>
+                        Each web page = one Java class. It separates the location of the element (locators) from the test logic.
+                    </article>
+                    <article style="padding:15px; background:white; border-left:4px solid var(--accent-color);">
+                        <strong>Dependency Injection</strong><br>
+                        Allows sharing state (data) seamlessly between different test steps without static variables.
+                    </article>
+                    <article style="padding:15px; background:white; border-left:4px solid var(--warning-color);">
+                        <strong>Singleton Pattern</strong><br>
+                        Ensures only one instance of configuration or driver exists per thread context.
+                    </article>
+                    <article style="padding:15px; background:white; border-left:4px solid var(--danger-color);">
+                        <strong>Factory Pattern</strong><br>
+                        Used by PageFactory to initialize web elements efficiently when pages are loaded.
+                    </article>
+                </div>
+            </section>
+
+            <section id="prerequisites">
+                <h2>3. Prerequisites</h2>
+                
+                <h3>Software You Need</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Software</th>
+                            <th>Version</th>
+                            <th>Download Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Java JDK</td>
+                            <td>11 or higher</td>
+                            <td><a href="https://www.oracle.com/java/technologies/downloads/" target="_blank">Oracle Downloads</a></td>
+                        </tr>
+                        <tr>
+                            <td>Maven</td>
+                            <td>3.6+</td>
+                            <td><a href="https://maven.apache.org/download.cgi" target="_blank">Apache Maven</a></td>
+                        </tr>
+                        <tr>
+                            <td>IDE</td>
+                            <td>Any (IntelliJ recommended)</td>
+                            <td><a href="https://www.jetbrains.com/idea/download/" target="_blank">JetBrains</a></td>
+                        </tr>
+                        <tr>
+                            <td>Git</td>
+                            <td>Latest</td>
+                            <td><a href="https://git-scm.com/downloads" target="_blank">Git SCM</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Knowledge You Need</h3>
+                <ul>
+                    <li>✅ Basic Java (variables, methods, classes)</li>
+                    <li>✅ Basic understanding of web pages (HTML elements)</li>
+                    <li>⚠️ No prior Selenium/Cucumber knowledge required!</li>
+                </ul>
+
+                <h3>Verify Installation</h3>
+                <p>Run these commands in your terminal to check readiness:</p>
+                <pre><code class="language-bash"># Check Java
+java -version
+# Should show: java version "11" or higher
+
+# Check Maven
+mvn -version
+# Should show: Apache Maven 3.6.x or higher
+
+# Check Git
+git --version
+# Should show: git version 2.x.x</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <div class="alert alert-danger">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <strong>❌ If any command fails:</strong> The software is not installed or not in your system PATH. Reinstall and ensure you add them to your system environment variables.
+                    </div>
+                </div>
+            </section>
+
+            <section id="setup">
+                <h2>4. Project Setup</h2>
+                
+                <h3>Step 1: Get the Project</h3>
+                <pre><code class="language-bash"># Clone the repository
+git clone <your-repository-url>
+
+# Navigate to project folder
+cd automation-project</your-repository-url></code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>Step 2: Open in IDE</h3>
+                <p><strong>Using IntelliJ IDEA:</strong></p>
+                <ol>
+                    <li>Open IntelliJ IDEA</li>
+                    <li>Click <strong>File</strong> → <strong>Open</strong></li>
+                    <li>Select your project folder and click <strong>OK</strong></li>
+                    <li>Wait for Maven to download dependencies (see bottom right corner)</li>
+                </ol>
+                <div class="alert alert-warning">
+                    <i class="fas fa-lightbulb"></i>
+                    <strong>❌ Error "Cannot resolve dependencies"?</strong> Check internet connection, Run <code>mvn clean install -U</code> in terminal, or delete <code>.m2/repository</code> folder and retry.
+                </div>
+
+                <h3>Step 3: Install Dependencies</h3>
+                <pre><code class="language-bash"># Clean and install all dependencies
+mvn clean install</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                <p><strong>This command will:</strong> Download all required libraries, compile your code, and run any existing tests. <br><strong>⏱️ First time:</strong> May take 5-10 minutes.</p>
+
+                <h3>Step 4: Configure Your Environment</h3>
+                <p>Open <code>src/test/resources/config/config.properties</code>:</p>
+                <pre><code class="language-properties"># Application URL
+base.url=https://your-application-url.com
+
+# Browser Settings
+browser=chrome          # Options: chrome, firefox, edge
+headless=false         # true = no browser window, false = see browser
+maximize=true          # true = fullscreen browser
+
+# Wait Times (in seconds)
+implicit.wait=10       # Default wait for elements
+explicit.wait=20       # Maximum wait for specific conditions
+page.load.timeout=30   # Maximum time to load a page
+
+# Test Credentials (for development only)
+<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="41352432356f242c20282d7c35243235012439202c312d246f222e2c">[email&#160;protected]</a>
+test.password=Test@123</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Important:</strong> Change <code>base.url</code> to your application's URL!
+                </div>
+            </section>
+
+            <section id="components">
+                <h2>5. Framework Components Explained</h2>
+
+                <details open="">
+                    <summary>1. TestContext - Sharing Data Between Steps</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/context/TestContext.java</code><br>
+                        Allows different test steps to share information (e.g., created user ID).</p>
+<pre><code class="language-java">// STORING data (in any step)
+testContext.setContext("USER_EMAIL", "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="b1dbded9dff1d4c9d0dcc1ddd49fd2dedc">[email&#160;protected]</a>");
+testContext.setContext("USER_ID", 12345);
+testContext.setContext("IS_VERIFIED", true);
+
+// RETRIEVING data (in another step)
+String email = testContext.getContextAsString("USER_EMAIL");
+Integer userId = testContext.getContextAsInteger("USER_ID");
+Boolean verified = testContext.getContextAsBoolean("IS_VERIFIED");
+
+// CHECKING if data exists
+if (testContext.containsContext("USER_EMAIL")) {
+    // Do something
+}
+
+// CLEARING all data (done automatically after each test)
+testContext.clearContext();</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>2. DriverManager - Managing the Browser</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/utils/DriverManager.java</code><br>
+                        Opens, configures, and closes the browser. Automatically downloads drivers.</p>
+<pre><code class="language-java">// Initialize browser (done automatically in Hooks)
+DriverManager.initializeDriver();
+
+// Get browser instance to use
+WebDriver driver = DriverManager.getDriver();
+
+// Close browser (done automatically in Hooks)
+DriverManager.quitDriver();</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>3. Hooks - Setup and Cleanup</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/hooks/Hooks.java</code><br>
+                        Runs code before and after each test scenario.</p>
+<pre><code class="language-java">@Before
+public void beforeScenario(Scenario scenario) {
+    logger.info("Starting test: " + scenario.getName());
+    
+    // Open browser
+    DriverManager.initializeDriver();
+    WebDriver driver = DriverManager.getDriver();
+    context.setDriver(driver);
+    
+    // Go to application
+    driver.get(configReader.getBaseUrl());
+}
+
+@After
+public void afterScenario(Scenario scenario) {
+    logger.info("Test finished: " + scenario.getName());
+    
+    // Take screenshot if failed
+    if (scenario.isFailed()) {
+        takeScreenshot(scenario);
+    }
+    
+    // Close browser
+    DriverManager.quitDriver();
+}</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>4. BasePage - Common Methods</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/pages/BasePage.java</code><br>
+                        Provides reusable methods that all page objects can use.</p>
+<pre><code class="language-java">// Click on an element
+protected void click(WebElement element)
+
+// Type text into a field
+protected void enterText(WebElement element, String text)
+
+// Get text from an element
+protected String getText(WebElement element)
+
+// Check if element is visible
+protected boolean isDisplayed(WebElement element)
+
+// Scroll to an element
+protected void scrollToElement(WebElement element)
+
+// Click using JavaScript (when normal click doesn't work)
+protected void clickUsingJS(WebElement element)
+
+// Get current page URL
+protected String getCurrentUrl()</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>5. WaitHelper - Waiting for Elements</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/utils/WaitHelper.java</code><br>
+                        Waits for elements to be ready. Critical for dynamic web pages.</p>
+<pre><code class="language-java">// Wait until element is visible on screen
+waitHelper.waitForElementVisible(element);
+
+// Wait until element is clickable
+waitHelper.waitForElementClickable(element);
+
+// Wait until element exists in HTML
+waitHelper.waitForElementPresent(element);
+
+// Check if element is displayed (returns true/false)
+boolean isVisible = waitHelper.isElementDisplayed(element);
+
+// Wait with custom timeout (in seconds)
+waitHelper.waitForElement(element, 30);
+
+// Hard wait - pause for specific time (USE SPARINGLY!)
+waitHelper.hardWait(2000); // 2 seconds</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+                
+                <details>
+                    <summary>6. ConfigReader - Reading Configuration</summary>
+                    <div>
+                        <p><strong>Location:</strong> <code>src/test/java/com/company/utils/ConfigReader.java</code><br>
+                        Reads settings from config.properties.</p>
+<pre><code class="language-java">ConfigReader config = new ConfigReader();
+
+// Get application URL
+String url = config.getBaseUrl();
+
+// Get browser name
+String browser = config.getBrowser();
+
+// Get any custom property
+String value = config.getProperty("test.email");</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+            </section>
+
+            <section id="first-test">
+                <h2>6. Creating Your First Test - Step by Step</h2>
+                <p>Let's create a complete test for <strong>Login Functionality</strong>.</p>
+
+                <h3>Step 1: Write the Test Scenario (Feature File)</h3>
+                <p><strong>Location:</strong> <code>src/test/resources/features/login.feature</code></p>
+                <pre><code class="language-gherkin">Feature: User Login
+  As a registered user
+  I want to log in to the application
+  So that I can access my account
+
+  Background:
+    Given the login page is open
+
+  @smoke @login
+  Scenario: Successful login with valid credentials
+    When I enter email "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="93e7f6e0e7d3f6ebf2fee3fff6bdf0fcfe">[email&#160;protected]</a>"
+    And I enter password "Test@123"
+    And I click the login button
+    Then I should be redirected to the dashboard
+    And I should see welcome message
+
+  @login @negative
+  Scenario: Login with invalid password
+    When I enter email "<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="740011070034110c15190418115a171b19">[email&#160;protected]</a>"
+    And I enter password "WrongPassword"
+    And I click the login button
+    Then I should see error message "Invalid credentials"
+    And I should remain on the login page
+
+  @login @negative
+  Scenario: Login with empty fields
+    When I click the login button
+    Then I should see error message "Email is required"</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>Step 2: Create the Page Object</h3>
+                <p><strong>Location:</strong> <code>src/test/java/com/company/pages/LoginPage.java</code></p>
+                <pre><code class="language-java">package com.company.pages;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class LoginPage extends BasePage {
+
+    // ========== Define Web Elements ==========
+    @FindBy(id = "email")
+    private WebElement emailInput;
+    
+    @FindBy(id = "password")
+    private WebElement passwordInput;
+    
+    @FindBy(xpath = "//button[@type='submit']")
+    private WebElement loginButton;
+    
+    @FindBy(css = ".error-message")
+    private WebElement errorMessage;
+    
+    @FindBy(xpath = "//h1[contains(text(),'Welcome')]")
+    private WebElement welcomeMessage;
+
+    // ========== Constructor ==========
+    public LoginPage(WebDriver driver) {
+        super(driver);  // Call parent class constructor
+        PageFactory.initElements(driver, this);  // Initialize all @FindBy elements
+    }
+
+    // ========== Page Actions (Methods) ==========
+    public boolean isLoginPageDisplayed() {
+        try {
+            return waitHelper.isElementDisplayed(loginButton);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public void enterEmail(String email) {
+        waitHelper.waitForElementVisible(emailInput);
+        enterText(emailInput, email);
+    }
+    
+    public void enterPassword(String password) {
+        waitHelper.waitForElementVisible(passwordInput);
+        enterText(passwordInput, password);
+    }
+    
+    public void clickLoginButton() {
+        waitHelper.waitForElementClickable(loginButton);
+        click(loginButton);
+    }
+    
+    public String getErrorMessage() {
+        waitHelper.waitForElementVisible(errorMessage);
+        return getText(errorMessage);
+    }
+    
+    public boolean isWelcomeMessageDisplayed() {
+        try {
+            return waitHelper.isElementDisplayed(welcomeMessage);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public void login(String email, String password) {
+        enterEmail(email);
+        enterPassword(password);
+        clickLoginButton();
+    }
+}</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>Step 3: Create Step Definitions</h3>
+                <p><strong>Location:</strong> <code>src/test/java/com/company/stepDefinitions/LoginSteps.java</code></p>
+                <pre><code class="language-java">package com.company.stepDefinitions;
+
+import com.company.context.TestContext;
+import com.company.pages.LoginPage;
+import com.company.utils.ConfigReader;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+
+public class LoginSteps {
+
+    private WebDriver driver;
+    private TestContext testContext;
+    private LoginPage loginPage;
+    private ConfigReader configReader;
+
+    // Constructor - TestContext is automatically injected by Cucumber
+    public LoginSteps(TestContext testContext) {
+        this.testContext = testContext;
+        this.driver = testContext.getDriver();
+        this.loginPage = new LoginPage(driver);
+        this.configReader = new ConfigReader();
+    }
+
+    @Given("the login page is open")
+    public void the_login_page_is_open() {
+        String baseUrl = configReader.getBaseUrl();
+        driver.get(baseUrl + "/login");
+        Assert.assertTrue("Login page should be displayed", loginPage.isLoginPageDisplayed());
+    }
+
+    @When("I enter email {string}")
+    public void i_enter_email(String email) {
+        loginPage.enterEmail(email);
+        testContext.setContext("USER_EMAIL", email);
+    }
+
+    @When("I enter password {string}")
+    public void i_enter_password(String password) {
+        loginPage.enterPassword(password);
+    }
+
+    @When("I click the login button")
+    public void i_click_the_login_button() {
+        loginPage.clickLoginButton();
+    }
+
+    @Then("I should be redirected to the dashboard")
+    public void i_should_be_redirected_to_the_dashboard() {
+        loginPage.waitHelper.hardWait(2000);
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue("Should redirect to dashboard", currentUrl.contains("/dashboard"));
+    }
+
+    @Then("I should see welcome message")
+    public void i_should_see_welcome_message() {
+        Assert.assertTrue("Welcome message should be displayed", loginPage.isWelcomeMessageDisplayed());
+    }
+
+    @Then("I should see error message {string}")
+    public void i_should_see_error_message(String expectedMessage) {
+        loginPage.waitHelper.hardWait(1000);
+        String actualMessage = loginPage.getErrorMessage();
+        Assert.assertTrue("Error message should contain: " + expectedMessage, 
+            actualMessage.contains(expectedMessage));
+    }
+
+    @Then("I should remain on the login page")
+    public void i_should_remain_on_the_login_page() {
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertTrue("Should remain on login page", currentUrl.contains("/login"));
+    }
+}</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>Step 4: Update Test Runner</h3>
+                <p><strong>Location:</strong> <code>src/test/java/com/company/runners/TestRunner.java</code></p>
+                <pre><code class="language-java">@RunWith(Cucumber.class)
+@CucumberOptions(
+        features = "src/test/resources/features",
+        glue = { "com.company.stepDefinitions", "com.company.hooks" },
+        plugin = {
+                "pretty",
+                "html:target/cucumber-reports/cucumber.html",
+                "json:target/cucumber-reports/cucumber.json",
+        },
+        monochrome = true,
+        dryRun = false,
+        tags = "@smoke"
+)
+public class TestRunner {}</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>Step 5: Run Your Test!</h3>
+                <ul>
+                    <li><strong>Option 1 (IDE):</strong> Right-click <code>TestRunner.java</code> and select <strong>Run</strong>.</li>
+                    <li><strong>Option 2 (Maven):</strong> Run <code>mvn clean test</code> in terminal.</li>
+                    <li><strong>Option 3 (Tags):</strong> Run <code>mvn clean test -Dcucumber.filter.tags="@smoke"</code>.</li>
+                </ul>
+            </section>
+
+            <section id="best-practices">
+                <h2>7. Best Practices</h2>
+
+                <div class="grid">
+                    <div class="card" style="border: 1px solid #c3e6cb; background: #d4edda; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top:0; color:#155724;"><i class="fas fa-check"></i> DO THIS</h4>
+                        <pre><code class="language-java">// Good: Descriptive method names
+public void clickLoginButton() { }
+
+// Good: Combine related actions
+public void login(String email, String password) {
+    enterEmail(email);
+    enterPassword(password);
+    clickLoginButton();
+}
+
+// Good: Explicit waits
+waitHelper.waitForElementVisible(element);</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                    
+                    <div class="card" style="border: 1px solid #f5c6cb; background: #f8d7da; padding: 15px; border-radius: 8px;">
+                        <h4 style="margin-top:0; color:#721c24;"><i class="fas fa-times"></i> DON'T DO THIS</h4>
+                        <pre><code class="language-java">// Bad: Exposing WebElements
+public WebElement getLoginButton() { }
+
+// Bad: Assertions in Page Objects
+public void verifyLogin() {
+    Assert.assertTrue(isDashboardDisplayed());
+}
+
+// Bad: Hard waits
+Thread.sleep(5000);</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </div>
+
+                <h3>Locator Strategy (Priority Order)</h3>
+                <ol>
+                    <li><strong>ID (Best)</strong>: <code>@FindBy(id = "email")</code></li>
+                    <li><strong>Name (Good)</strong>: <code>@FindBy(name = "username")</code></li>
+                    <li><strong>CSS Selector (Fast)</strong>: <code>@FindBy(css = ".error-message")</code></li>
+                    <li><strong>XPath (Last Resort)</strong>: <code>@FindBy(xpath = "//button[text()='Login']")</code></li>
+                </ol>
+            </section>
+
+            <section id="running-tests">
+                <h2>8. Running Tests</h2>
+
+                <h3>1. Run All Tests</h3>
+                <pre><code class="language-bash">mvn clean test</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>2. Run Specific Tags</h3>
+                <pre><code class="language-bash"># Run smoke tests only
+mvn clean test -Dcucumber.filter.tags="@smoke"
+
+# Run login tests only
+mvn clean test -Dcucumber.filter.tags="@login"
+
+# Run smoke AND login tests
+mvn clean test -Dcucumber.filter.tags="@smoke and @login"
+
+# Run all EXCEPT negative tests
+mvn clean test -Dcucumber.filter.tags="not @negative"
+
+# Run smoke OR regression tests
+mvn clean test -Dcucumber.filter.tags="@smoke or @regression"</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+
+                <h3>3. Run in Different Browsers</h3>
+                <p>Edit <code>config.properties</code>: <code>browser=firefox</code> or <code>browser=edge</code>.</p>
+
+                <h3>4. Run in Headless Mode</h3>
+                <p>Edit <code>config.properties</code>: <code>headless=true</code>.</p>
+
+                <h3>5. Run from IDE</h3>
+                <ul>
+                    <li><strong>Run Suite:</strong> Right-click <code>TestRunner.java</code> -&gt; Run.</li>
+                    <li><strong>Run Feature:</strong> Right-click <code>.feature</code> file -&gt; Run Feature.</li>
+                    <li><strong>Run Scenario:</strong> Open feature file -&gt; Click green arrow next to scenario line.</li>
+                    <li><strong>Debug:</strong> Right-click -&gt; Debug (sets breakpoints).</li>
+                </ul>
+            </section>
+
+            <section id="common-errors">
+                <h2>9. Common Errors &amp; Solutions</h2>
+
+                <div class="accordion">
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 1: NoSuchElementException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Selenium cannot find the element on the page.</p>
+                            <ul>
+                                <li><strong>Not loaded yet:</strong> Use <code>waitHelper.waitForElementVisible(element)</code>.</li>
+                                <li><strong>Wrong locator:</strong> Check ID/XPath in DevTools.</li>
+                                <li><strong>Inside Iframe:</strong> Switch to iframe: <code>driver.switchTo().frame("name")</code>.</li>
+                                <li><strong>Not visible:</strong> Scroll to element first.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 2: ElementNotInteractableException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Element exists but cannot be clicked.</p>
+                            <ul>
+                                <li><strong>Not clickable yet:</strong> Use <code>waitHelper.waitForElementClickable(element)</code>.</li>
+                                <li><strong>Covered by overlay:</strong> Wait for overlay to disappear.</li>
+                                <li><strong>Disabled:</strong> Check <code>element.isEnabled()</code>.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 3: StaleElementReferenceException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Page refreshed/changed, making reference invalid.</p>
+                            <ul>
+                                <li><strong>Page refreshed:</strong> Re-find element after refresh.</li>
+                                <li><strong>Dynamic DOM:</strong> Use <code>@FindBy</code> (re-finds automatically).</li>
+                                <li><strong>Removed/Added:</strong> Wait and re-find.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 4: TimeoutException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Element didn't appear within wait time.</p>
+                            <ul>
+                                <li><strong>Too slow:</strong> Increase timeout <code>waitHelper.waitForElement(el, 60)</code>.</li>
+                                <li><strong>Wrong locator:</strong> Verify element manually.</li>
+                                <li><strong>App issue:</strong> Element never appears.</li>
+                                <li><strong>Network:</strong> Increase global timeouts in config.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 5: WebDriverException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Browser/Driver issues.</p>
+                            <ul>
+                                <li>Browser not installed.</li>
+                                <li>Driver not downloaded (use WebDriverManager).</li>
+                                <li>Version mismatch (update browser or driver).</li>
+                                <li>Permission issues (Linux/Mac <code>chmod +x</code>).</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 6: NullPointerException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Using null object.</p>
+                            <ul>
+                                <li><strong>Element not init:</strong> Missing <code>PageFactory.initElements(driver, this)</code>.</li>
+                                <li><strong>Driver null:</strong> Initialize driver before use.</li>
+                                <li><strong>Context null:</strong> Check if data exists before retrieval.</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 7: InvalidSelectorException</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Bad XPath/CSS syntax.</p>
+                            <ul>
+                                <li><strong>XPath:</strong> <code>//button[text()='Login']</code> (Need quotes).</li>
+                                <li><strong>CSS:</strong> <code>button[type='submit']</code> (Need quotes).</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details>
+                        <summary><span style="color:var(--danger-color)">❌</span> Error 11: BUILD FAILURE</summary>
+                        <div>
+                            <p><strong>Cause:</strong> Maven build failed.</p>
+                            <ul>
+                                <li><strong>Java Version:</strong> Must be 11+.</li>
+                                <li><strong>Dependency fail:</strong> Delete <code>.m2</code> folder and run <code>mvn clean install -U</code>.</li>
+                                <li><strong>Compilation error:</strong> Fix syntax errors in code.</li>
+                                <li><strong>Port in use:</strong> Kill java processes.</li>
+                            </ul>
+                        </div>
+                    </details>
+                </div>
+            </section>
+
+            <section id="troubleshooting">
+                <h2>10. Troubleshooting Guide</h2>
+                
+                <h3>General Debugging Steps</h3>
+                <ol>
+                    <li><strong>Check Logs:</strong> Look in <code>logs/application.log</code> for ERRORs.</li>
+                    <li><strong>Take Screenshots:</strong> Check <code>target/screenshots/</code>.</li>
+                    <li><strong>Add Logging:</strong> Print variable states to console/log.</li>
+                    <li><strong>Pause Execution:</strong> Add temporary <code>waitHelper.hardWait(5000)</code>.</li>
+                    <li><strong>Debug Mode:</strong> Use IDE breakpoints to step through code.</li>
+                </ol>
+
+                <h3>Quick Fixes Checklist</h3>
+                <ul class="checklist">
+                    <li><i class="far fa-square"></i> Add explicit wait before action</li>
+                    <li><i class="far fa-square"></i> Verify element locator in DevTools</li>
+                    <li><i class="far fa-square"></i> Check if element is in iframe</li>
+                    <li><i class="far fa-square"></i> Scroll to element before clicking</li>
+                    <li><i class="far fa-square"></i> Use JavaScript click if normal click fails</li>
+                    <li><i class="far fa-square"></i> Increase timeout in config.properties</li>
+                    <li><i class="far fa-square"></i> Run in non-headless mode to see execution</li>
+                </ul>
+            </section>
+
+            <section id="faq">
+                <h2>11. FAQ</h2>
+                
+                <details>
+                    <summary>Q1: How do I find element locators?</summary>
+                    <div>Right-click element -&gt; Inspect -&gt; Right-click HTML -&gt; Copy -&gt; Copy Selector/XPath. Verify in console with <code>$x("//xpath")</code> or <code>$$("css")</code>.</div>
+                </details>
+
+                <details>
+                    <summary>Q2: How do I handle dropdowns?</summary>
+                    <div>
+                        <pre><code class="language-java">DropdownHelper dd = new DropdownHelper(driver);
+dd.selectByVisibleText(element, "Option 1");
+dd.selectByValue(element, "value1");</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Q3: How do I handle alerts/popups?</summary>
+                    <div>
+                        <pre><code class="language-java">AlertHelper alert = new AlertHelper(driver);
+alert.acceptAlert(); // Click OK
+alert.dismissAlert(); // Click Cancel</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Q4: How do I upload files?</summary>
+                    <div>
+                        <pre><code class="language-java">@FindBy(id = "fileInput") WebElement fileInput;
+fileInput.sendKeys("C:\\path\\to\\file.pdf");</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Q5: How do I handle multiple windows/tabs?</summary>
+                    <div>
+                        <pre><code class="language-java">String main = driver.getWindowHandle();
+// ... open new window ...
+for(String win : driver.getWindowHandles()) {
+    if(!win.equals(main)) driver.switchTo().window(win);
+}</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Q6: How do I generate random data?</summary>
+                    <div>
+                        <pre><code class="language-java">String uniqueEmail = "test_" + System.currentTimeMillis() + "@example.com";</code><button class="copy-btn"><i class="far fa-copy"></i> Copy</button></pre>
+                    </div>
+                </details>
+
+                <details>
+                    <summary>Q7: How do I run tests in parallel?</summary>
+                    <div>Configuring `maven-surefire-plugin` in `pom.xml` with `<parallel>methods</parallel>` and `<threadcount>3</threadcount>`.</div>
+                </details>
+
+                <details>
+                    <summary>Q8: How do I wait for page load?</summary>
+                    <div>Wait for a specific element (best) or use JS: `return document.readyState == 'complete'`.</div>
+                </details>
+
+                <details>
+                    <summary>Q9: How do I debug failing tests?</summary>
+                    <div>Run in non-headless mode, add breakpoints, inspect logs/screenshots.</div>
+                </details>
+
+                <details>
+                    <summary>Q10: How do I handle dynamic elements?</summary>
+                    <div>Use XPaths with `contains()` or format strings: `String.format("//button[text()='%s']", btnName)`.</div>
+                </details>
+            </section>
+
+            <section id="cheat-sheet">
+                <h2>12. Quick Reference Cheat Sheet</h2>
+                
+                <div class="grid">
+                    <div>
+                        <h4>Annotations</h4>
+                        <ul>
+                            <li><code>@FindBy(id="x")</code></li>
+                            <li><code>@Given("text")</code></li>
+                            <li><code>@When("text")</code></li>
+                            <li><code>@Then("text")</code></li>
+                            <li><code>@Before / @After</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Assertions</h4>
+                        <ul>
+                            <li><code>Assert.assertTrue(cond)</code></li>
+                            <li><code>Assert.assertFalse(cond)</code></li>
+                            <li><code>Assert.assertEquals(exp, act)</code></li>
+                            <li><code>Assert.assertNotNull(obj)</code></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>Waits</h4>
+                        <ul>
+                            <li><code>waitForElementVisible(el)</code></li>
+                            <li><code>waitForElementClickable(el)</code></li>
+                            <li><code>isElementDisplayed(el)</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="conclusion">
+                <h2>13. Conclusion</h2>
+                <p>🎉 <strong>Congratulations!</strong> You now know how to build a scalable test automation framework using Selenium, Cucumber, and Java.</p>
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>Next Steps:</strong>
+                    <ol>
+                        <li>Clone the repository</li>
+                        <li>Practice creating simple tests</li>
+                        <li>Explore existing tests in the framework</li>
+                        <li>Start contributing to test automation!</li>
+                    </ol>
+                </div>
+                <p><strong>Additional Resources:</strong></p>
+                <ul>
+                    <li><a href="https://www.selenium.dev/documentation/" target="_blank">Selenium Docs</a></li>
+                    <li><a href="https://cucumber.io/docs/cucumber/" target="_blank">Cucumber Docs</a></li>
+                </ul>
+                <p><em>Happy Testing! 🚀</em></p>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Back to Top Button -->
+    <a href="#header-section" id="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Simple script for copy functionality and smooth scroll offset -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                if(window.innerWidth < 992) {
+                    document.querySelector('.sidebar').classList.remove('active');
+                }
+            });
+        });
+
+        // Copy buttons
+        document.querySelectorAll('pre').forEach(block => {
+            const button = document.createElement('button');
+            button.className = 'copy-btn';
+            button.innerHTML = '<i class="far fa-copy"></i> Copy';
+            
+            button.addEventListener('click', () => {
+                const code = block.querySelector('code').innerText;
+                navigator.clipboard.writeText(code);
+                button.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    button.innerHTML = '<i class="far fa-copy"></i> Copy';
+                }, 2000);
+            });
+            
+            block.appendChild(button);
+        });
+
+        // Active link highlighting
+        window.addEventListener('scroll', () => {
+            let current = '';
+            document.querySelectorAll('section').forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-links a').forEach(li => {
+                li.classList.remove('active');
+                if (li.getAttribute('href').includes(current)) {
+                    li.classList.add('active');
+                }
+            });
+        });
+    </script>
+
+</body></html>
