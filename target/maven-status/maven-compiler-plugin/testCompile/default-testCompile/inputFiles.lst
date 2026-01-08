@@ -1,23 +1,33 @@
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\ElementHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\WaitHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\ScreenshotHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\stepDefinitions\admin\AdminLoginSteps.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\pages\BasePage.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\pages\admin\AdminLoginPage.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\pages\admin\InviteUserPage.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\AlertHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\hooks\Hooks.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\runners\TestRunner.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\stepDefinitions\admin\InviteManagerSteps.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\DropdownHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\pages\admin\UserManagementPage.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\LogHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\RandomDataGenerator.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\DateHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\ExtentReportManager.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\stepDefinitions\admin\InviteProviderSteps.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\DriverManager.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\context\TestContext.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\JavaScriptHelper.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\ConfigReader.java
-D:\AI\MTOmics_core_web-main\Mtomics_Automation\src\test\java\com\mtomics\utils\FileUploadHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\LabFileUploadPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\hooks\Hooks.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\ProviderSignupPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\AvailabilityManagementPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\ChargebeePricingPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\DropdownHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\JavaScriptHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\AppointmentBookingPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\RandomDataGenerator.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\stepDefinitions\admin\AdminLoginSteps.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\DriverManager.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\context\TestContext.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\ExtentReportManager.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\WaitHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\FileUploadHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\ConfigReader.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\EventTypeManagementPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\ElementHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\runners\TestRunner.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\admin\UserManagementPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\ClientInvitationPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\ScreenshotHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\ProviderProfilePage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\AlertHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\BasePage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\ProxyClientInvitationPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\stepDefinitions\admin\InviteManagerSteps.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\LogHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\admin\AdminLoginPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\provider\DocumentUploadPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\pages\admin\InviteUserPage.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\utils\DateHelper.java
+D:\Selenium DOcs\Project_Automation\src\test\java\com\mtomics\stepDefinitions\admin\InviteProviderSteps.java

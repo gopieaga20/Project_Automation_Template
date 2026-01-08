@@ -1,4 +1,4 @@
-@admin2 @invite @provider
+@admin @invite @provider
 Feature: Admin Invite Provider
   As an admin user
   I want to invite providers to the MTOmics platform
@@ -15,7 +15,7 @@ Feature: Admin Invite Provider
 
   @smoke @positive
   Scenario: Successfully invite a provider with valid details
-    When I enter provider email "gopinath.e+provider11@spritle.com"
+    When I enter provider email "gopinath.e+provider12@spritle.com"
     And I enter provider first name "John"
     And I enter provider last name "Doe"
     And I select role "Provider"
@@ -48,7 +48,7 @@ Feature: Admin Invite Provider
 
   @positive
   Scenario: Edit invitation email template
-    When I enter provider email "gopinath.e+provider77@spritle.com"
+    When I enter provider email "gopinath.e+provider78@spritle.com"
     And I enter provider first name "Custom"
     And I enter provider last name "Email"
     And I select role "Provider"
