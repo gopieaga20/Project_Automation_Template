@@ -23,7 +23,7 @@ import org.junit.runner.RunWith;
     },
     monochrome = true,
     dryRun = false,
-    tags = "@admin"
+    tags = "@adminlogin"
 )
 public class TestRunner {
         // This class will be empty - Cucumber uses annotations to run tests

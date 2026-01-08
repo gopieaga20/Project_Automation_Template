@@ -7,7 +7,7 @@ Feature: Admin Login
   Background:
     Given I navigate to the MTOmics login page
 
-  @smoke @positive
+  @smoke @positive @adminlogin
   Scenario: Successful admin login with valid credentials
     When I enter email "ajith.r+admin@spritle.com"
     And I enter password "Qwerty@123"
