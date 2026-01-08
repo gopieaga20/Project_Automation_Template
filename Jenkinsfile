@@ -24,7 +24,7 @@ pipeline {
         )
         string(
             name: 'TAGS',
-            defaultValue: '@smoke',
+            defaultValue: '@admin',
             description: 'Cucumber tags to execute (e.g., @smoke, @regression, @admin, @provider)'
         )
         booleanParam(
