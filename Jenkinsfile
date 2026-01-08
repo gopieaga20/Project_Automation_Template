@@ -2,7 +2,7 @@ pipeline {
     agent any
     
     tools {
-        git 'Git-Windows'
+        git 'Default'
         maven 'Maven' // Configure this in Jenkins Global Tool Configuration
         jdk 'Java'        // Configure this in Jenkins Global Tool Configuration
     }
