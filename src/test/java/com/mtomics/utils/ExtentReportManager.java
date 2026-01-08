@@ -37,7 +37,7 @@ public class ExtentReportManager {
                     reportDir.mkdirs();
                 }
 
-                String fullReportPath = reportPath + reportName;
+                String fullReportPath = "test-output/extent-report/ExtentReport.html";
 
                 // Create ExtentSparkReporter
                 ExtentSparkReporter sparkReporter = new ExtentSparkReporter(fullReportPath);
